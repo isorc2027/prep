@@ -103,6 +103,26 @@ h1, h2, p { margin-top: 0; }
 .chapter-picker select { min-width: 235px; max-width: 360px; padding: 12px 34px 12px 13px; border: 1px solid #dfe6df; border-radius: 3px; background: var(--white); color: var(--forest); font-size: 12px; letter-spacing: 0; text-transform: none; outline: none; }
 .test-shell { min-height: 370px; }
 .test-welcome, .question-panel, .result-panel { padding: clamp(24px, 4.5vw, 52px); border: 1px solid #e7ebe4; border-radius: 6px; background: var(--white); box-shadow: 0 9px 36px rgba(22,61,53,.045); }
+.registration-panel { display: grid; grid-template-columns: minmax(0, .9fr) minmax(280px, 1fr); gap: clamp(24px, 5vw, 58px); padding: clamp(24px, 4.5vw, 52px); border: 1px solid #e7ebe4; border-radius: 6px; background: var(--white); box-shadow: 0 9px 36px rgba(22,61,53,.045); }
+.registration-copy h2 { margin: 0 0 13px; color: var(--forest); font: 600 30px/1.2 "Playfair Display", Georgia, serif; }
+.registration-copy p:not(.eyebrow) { color: var(--muted); font-size: 13px; line-height: 1.8; }
+.registration-copy .privacy-note { margin-top: 21px; padding-left: 13px; border-left: 2px solid var(--gold); font-size: 11px !important; }
+.registration-form { display: grid; align-content: center; gap: 9px; }
+.registration-form label { margin-top: 7px; color: var(--forest); font-size: 11px; font-weight: 700; }
+.registration-form input { width: 100%; padding: 13px 12px; border: 1px solid #dfe6df; border-radius: 3px; background: #fffefa; color: var(--ink); font-size: 13px; outline: none; }
+.registration-form input:focus { border-color: var(--green); box-shadow: 0 0 0 3px rgba(46,113,97,.1); }
+.registration-form .button { margin-top: 12px; }
+.form-status { min-height: 18px; margin: 3px 0 0; color: var(--muted); font-size: 11px; line-height: 1.5; }
+.form-status.is-success, .email-status.is-success { color: #34704e; }
+.form-status.is-error, .email-status.is-error { color: #a74d42; }
+.form-small { margin: 0; color: var(--muted); font-size: 10px; line-height: 1.5; }
+.signed-in-label { margin-right: 10px; }
+.sign-out-button { padding: 3px 0; border: 0; border-bottom: 1px solid #aebeb2; background: transparent; color: var(--forest); font-size: 10px; font-weight: 700; }
+.email-report-box { max-width: 580px; margin: 24px auto 0; padding: 15px 18px; border: 1px solid var(--line); border-radius: 4px; background: #f7f8f3; text-align: left; }
+.email-report-title { margin: 0 0 6px; color: var(--forest); font-size: 12px; font-weight: 700; }
+.email-status { margin: 0; color: var(--muted); font-size: 11px; line-height: 1.6; }
+.email-report-box .button { min-height: 35px; margin-top: 10px; font-size: 10px; }
+.focus-heading { margin: 24px 0 0; color: var(--forest); font-size: 12px; font-weight: 700; }
 .test-welcome { text-align: center; padding-top: 55px; padding-bottom: 55px; }
 .welcome-icon { display: grid; place-items: center; width: 48px; height: 48px; margin: 0 auto 17px; border-radius: 50%; color: var(--green); background: var(--mint); font: 700 20px "Playfair Display", serif; }
 .test-welcome h2, .result-panel h2 { margin: 0 0 12px; color: var(--forest); font: 600 30px/1.2 "Playfair Display", Georgia, serif; }
@@ -198,6 +218,7 @@ h1, h2, p { margin-top: 0; }
   .chapter-picker { margin-top: 20px; }
   .chapter-picker select { width: 100%; max-width: none; }
   .test-welcome, .question-panel, .result-panel { padding: 24px 18px; }
+  .registration-panel { grid-template-columns: 1fr; gap: 10px; padding: 24px 18px; }
   .question-text { font-size: 23px; }
   .choice-button { grid-template-columns: 31px minmax(0,1fr); gap: 9px; padding: 11px; font-size: 12px; }
   .question-footer { align-items: flex-start; }

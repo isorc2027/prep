@@ -7,8 +7,10 @@
   <meta name="description" content="Take a chapter-wise UGC-NET English practice test.">
   <title>Practice Test | Prep</title>
   <link rel="stylesheet" href="styles.css">
+  <script src="firebase-config.js"></script>
   <script src="data/questions.js" defer></script>
-  <script src="app.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script type="module" src="app.js"></script>
 </head>
 <body data-page="test">
   <header class="site-header">
@@ -18,7 +20,7 @@
       <a class="active" href="test.html">Practice tests</a>
       <a href="flashcards.html">Flashcards</a>
     </nav>
-    <a class="header-note back-link" href="./">Back to chapters <span aria-hidden="true">↗</span></a>
+    <span class="header-note" id="account-status">Registration required</span>
   </header>
 
   <main class="study-main">

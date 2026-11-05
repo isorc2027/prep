@@ -1,0 +1,58 @@
+REGISTRATION AND TEST REPORT EMAIL SETUP
+
+This static site uses Firebase Authentication email links for registration and EmailJS to send test reports. Both services offer free plans, subject to their current limits and terms. Service provider accounts, sender verification, and settings are required before these features work.
+
+1. FIREBASE EMAIL-LINK REGISTRATION
+
+- Create a Firebase project on the free Spark plan.
+- Add a Web app to the project and copy its web configuration.
+- In Authentication, enable the Email/Password provider and enable Email link sign-in.
+- Add the deployed site host, isorc-conference.org, to Firebase Authentication's authorized domains. Add localhost while developing locally.
+- In Authentication email templates, review the sign-in link template and sender details.
+- Put the apiKey, authDomain, projectId, and appId values in firebase-config.js. These web configuration values are public client identifiers, not service-account credentials.
+- Keep any Firebase service-account file, private key, or administrator credential out of the website.
+
+2. EMAILJS SCORE REPORTS
+
+- Create an EmailJS account and email service. Verify the sender address or domain as required by the provider.
+- Create an email template with the recipient set to {{to_email}}.
+- Use these template variables:
+  to_name
+  to_email
+  chapter_name
+  chapter_label
+  score
+  total_questions
+  percentage
+  completed_at
+  missed_count
+  focus_areas
+- Example subject: Your Prep score report for {{chapter_name}}
+- Example body:
+
+Hello {{to_name}},
+
+Your {{chapter_name}} practice test is complete.
+
+Score: {{score}} out of {{total_questions}} ({{percentage}} percent)
+Completed: {{completed_at}}
+
+Questions to revisit: {{missed_count}}
+
+{{focus_areas}}
+
+Review the chapter questions and flashcards before trying again.
+
+- Set the EmailJS public key, service ID, and template ID in firebase-config.js.
+- Restrict the EmailJS allowed origins to the deployed domain and local development domain. Set provider rate limits and template restrictions where available.
+- Do not add a private email service password, SMTP credential, Firebase administrator key, or EmailJS private key to the public website.
+
+The site emails the registered user's score, percentage, chapter, completion time, each missed question, the user's answer, the correct answer, and the chapter explanation or answer-key note. If no questions were missed, the report congratulates the learner.
+
+IMPORTANT LIMITATIONS
+
+- The owner must complete provider configuration and test registration and report delivery before announcing this feature as live.
+- Firebase sign-in email links use Firebase's configured email template and delivery service.
+- EmailJS sends reports in the user's browser using its public client key; it does not make the quiz content private. The questions are already public on this site.
+- Provider free-plan quotas, branding, sender requirements, and availability can change. Check provider terms and usage limits.
+- No question-by-question explanation was present in the source files for most chapters. In those chapters, the report identifies missed items and restates the provided answer-key fact; it does not invent a textbook explanation.
