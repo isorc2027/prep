@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#153d35">
+  <meta name="description" content="Chapter-wise UGC-NET English practice tests and flashcards.">
+  <title>Prep | UGC-NET English</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="data/questions.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body data-page="home">
+  <header class="site-header">
+    <a class="brand" href="./" aria-label="Prep home">
+      <span class="brand-mark" aria-hidden="true">P</span>
+      <span>prep</span>
+    </a>
+    <nav class="main-nav" aria-label="Main navigation">
+      <a class="active" href="./">Chapters</a>
+      <a href="test.html">Practice tests</a>
+      <a href="flashcards.html">Flashcards</a>
+    </nav>
+    <span class="header-note">UGC-NET English</span>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Study with purpose</p>
+        <h1>Build confidence,<br><em>one chapter at a time.</em></h1>
+        <p class="hero-intro">Practice chapter-wise questions with instant feedback, review your score, and revisit key facts with flashcards.</p>
+        <div class="hero-actions">
+          <a class="button button-light" href="#chapter-list">Choose a chapter <span aria-hidden="true">→</span></a>
+          <a class="text-link text-link-light" href="flashcards.html">Explore flashcards</a>
+        </div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="orbit orbit-one"></div>
+        <div class="orbit orbit-two"></div>
+        <div class="book-shape">
+          <span class="book-line"></span><span class="book-line"></span><span class="book-line short"></span>
+          <span class="book-seal">P</span>
+        </div>
+        <span class="art-caption">Read. Recall. Repeat.</span>
+      </div>
+    </section>
+
+    <section class="intro-row">
+      <div>
+        <p class="eyebrow eyebrow-dark">Your study space</p>
+        <h2>Every chapter has a test and a deck.</h2>
+      </div>
+      <p class="section-copy">Choose any chapter to begin. Each test shows the correct answer and an explanation after every response, then gives you a score and a chance to try again.</p>
+    </section>
+
+    <section class="chapter-section" id="chapter-list">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow eyebrow-dark">The collection</p>
+          <h2>Choose your next chapter</h2>
+        </div>
+        <label class="search-wrap">
+          <span class="sr-only">Search chapters</span>
+          <span class="search-icon" aria-hidden="true">⌕</span>
+          <input id="chapter-search" type="search" placeholder="Find a chapter" autocomplete="off">
+        </label>
+      </div>
+      <div class="chapter-grid" id="chapter-grid" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a class="brand brand-footer" href="./"><span class="brand-mark" aria-hidden="true">P</span><span>prep</span></a>
+    <p>Chapter-wise practice for UGC-NET English.</p>
+    <a href="flashcards.html">Review the flashcards <span aria-hidden="true">→</span></a>
+  </footer>
+</body>
+</html>

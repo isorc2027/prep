@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#153d35">
+  <meta name="description" content="Review UGC-NET English with chapter-wise flashcards.">
+  <title>Flashcards | Prep</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="data/questions.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body data-page="flashcards">
+  <header class="site-header">
+    <a class="brand" href="./" aria-label="Prep home"><span class="brand-mark" aria-hidden="true">P</span><span>prep</span></a>
+    <nav class="main-nav" aria-label="Main navigation">
+      <a href="./">Chapters</a>
+      <a href="test.html">Practice tests</a>
+      <a class="active" href="flashcards.html">Flashcards</a>
+    </nav>
+    <a class="header-note back-link" href="./">Back to chapters <span aria-hidden="true">↗</span></a>
+  </header>
+  <main class="study-main flashcard-main">
+    <section class="study-topline">
+      <div>
+        <a class="back-crumb" href="./">← All chapters</a>
+        <p class="eyebrow eyebrow-dark">Quick recall</p>
+        <h1 id="flash-title">Chapter flashcards</h1>
+      </div>
+      <label class="chapter-picker">
+        <span>Chapter</span>
+        <select id="flash-chapter" aria-label="Choose a chapter"></select>
+      </label>
+    </section>
+    <section id="flash-app" class="flash-shell"></section>
+    <p class="keyboard-hint">Tip: use the left and right arrow keys to move between cards. Press space to flip.</p>
+    <div class="flash-test-link" id="flash-test-link"></div>
+  </main>
+  <footer class="site-footer">
+    <a class="brand brand-footer" href="./"><span class="brand-mark" aria-hidden="true">P</span><span>prep</span></a>
+    <p>Small sessions make lasting recall.</p>
+    <a href="test.html">Take a chapter test <span aria-hidden="true">→</span></a>
+  </footer>
+</body>
+</html>
