@@ -30,7 +30,9 @@ const emailConfigured = Boolean(
 );
 let auth = null;
 let authUser = null;
-let authError = "";
+let authError = firebaseConfigured
+  ? ""
+  : "Account sign-in is not configured yet. The site owner must finish the Firebase and email setup before tests can be taken.";
 let authReady = Promise.resolve(null);
 let lastAnswerPositions = null;
 
