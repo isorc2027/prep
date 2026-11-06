@@ -30,9 +30,7 @@ const emailConfigured = Boolean(
 );
 let auth = null;
 let authUser = null;
-let authError = firebaseConfigured
-  ? ""
-  : "Account sign-in is not configured yet. The site owner must finish the Firebase and email setup before tests can be taken.";
+let authError = "";
 let authReady = Promise.resolve(null);
 let lastAnswerPositions = null;
 
@@ -119,13 +117,14 @@ function updateAccountStatus(user) {
       window.location.reload();
     });
   } else {
-    status.textContent = firebaseConfigured ? "Registration required for tests" : "Account setup required";
+    status.textContent = "Open practice mode";
   }
 }
 
 async function initializeAuth() {
   if (!firebaseConfigured) {
-    authError = "Account sign-in has not been configured yet. Ask the site owner to finish the Firebase and email setup.";
+    authError = "";
+    authReady = Promise.resolve(null);
     updateAccountStatus(null);
     return null;
   }
@@ -235,7 +234,9 @@ function showRegistration(shell, onSignedIn) {
 }
 
 async function getAuthenticatedUser() {
-  if (!firebaseConfigured) return null;
+  if (!firebaseConfigured) {
+    return { email: "guest@prep.local", displayName: "Guest learner", isGuest: true };
+  }
   if (!auth) return await initializeAuth();
   return authUser || await authReady;
 }
@@ -303,18 +304,11 @@ async function renderTest() {
         <span class="welcome-icon" aria-hidden="true">P</span>
         <p class="eyebrow eyebrow-dark">${escapeHtml(chapterLabel(activeChapter))}</p>
         <h2>${escapeHtml(activeChapter.title)}</h2>
-        <p>This test has ${activeChapter.questions.length} questions. You will see the correct answer and a note immediately after each response. The Introduction has detailed source explanations; other notes are based on the answer key supplied with the chapter questions.</p>
+        <p>This test has ${activeChapter.questions.length} questions. You will see the correct answer and a note immediately after each response. No registration is required to practice.</p>
         <button class="button button-primary" id="start-test" type="button">Start test <span aria-hidden="true">→</span></button>
       </div>`;
     document.getElementById("start-test").addEventListener("click", async () => {
       const user = await getAuthenticatedUser();
-      if (!user) {
-        showRegistration(shell, (signedInUser) => {
-          authUser = signedInUser;
-          showWelcome();
-        });
-        return;
-      }
       startAttempt(user);
     });
   }
@@ -425,6 +419,12 @@ async function renderTest() {
     const focusText = misses.length
       ? misses.map((item) => `Question ${item.number}: ${item.stem}\nYour answer: ${item.chosen}. ${item.chosenText}\nCorrect answer: ${item.answer}. ${item.answerText}\nReview note: ${item.explanation}`).join("\n\n")
       : "No missed questions. Excellent work.";
+    if (!attempt.user || attempt.user.isGuest || !attempt.user.email || !emailConfigured || !window.emailjs) {
+      status.textContent = "Open practice mode is active, so no email report was sent.";
+      status.className = "email-status";
+      retryButton.hidden = true;
+      return;
+    }
     const params = {
       to_email: attempt.user.email,
       to_name: attempt.user.displayName || "Learner",
@@ -498,8 +498,12 @@ async function renderTest() {
 
     const retryButton = document.getElementById("retry-email");
     const emailStatus = document.getElementById("email-status");
-    retryButton.addEventListener("click", () => emailReport(attempt, retryButton, emailStatus));
-    emailReport(attempt, retryButton, emailStatus);
+    if (retryButton) {
+      retryButton.addEventListener("click", () => emailReport(attempt, retryButton, emailStatus));
+    }
+    if (emailStatus) {
+      emailReport(attempt, retryButton, emailStatus);
+    }
     document.getElementById("retake-test").addEventListener("click", () => startAttempt(attempt.user));
     const toggle = document.getElementById("review-toggle");
     if (toggle) {
@@ -514,13 +518,8 @@ async function renderTest() {
   }
 
   const user = await getAuthenticatedUser();
-  if (user) {
-    authUser = user;
-    showWelcome();
-  } else {
-    title.textContent = `${chapterLabel(activeChapter)} practice test`;
-    showRegistration(shell, () => showWelcome());
-  }
+  authUser = user;
+  showWelcome();
 }
 
 function renderFlashcards() {
